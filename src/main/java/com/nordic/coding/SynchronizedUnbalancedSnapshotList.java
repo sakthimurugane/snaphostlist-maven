@@ -3,6 +3,7 @@ package com.nordic.coding;
 import java.util.AbstractList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.TreeMap;
 
 /**
@@ -71,6 +72,7 @@ public class SynchronizedUnbalancedSnapshotList<E> extends AbstractList<E> imple
     */
 	@Override
 	public synchronized void dropPriorSnapshots(int version) {
+		Objects.requireNonNull(snapShotVersion);
 		if (version <= this.snapShotVersion){
 			for(int i = snapShotMap.firstKey(); i < version; i++){
 				snapShotMap.remove(i);
@@ -81,7 +83,9 @@ public class SynchronizedUnbalancedSnapshotList<E> extends AbstractList<E> imple
 	@SuppressWarnings("unchecked")
 	@Override
 	public synchronized E getAtVersion(int index, int version) {
+		Objects.requireNonNull(snapShotVersion);
 		Object[] versionElements = snapShotMap.get(version);
+		Objects.requireNonNull(versionElements);
 		return (E)versionElements[index];
 	}
 
