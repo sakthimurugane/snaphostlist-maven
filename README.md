@@ -7,7 +7,7 @@ Pre-requisites:
 I. Test Execution
 
 	1. Run the below maven command from the terminal
-	    mvn clean install
+	    mvn clean test
 	
 II. PROS
 
