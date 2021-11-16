@@ -16,6 +16,7 @@ II. PROS
 	2. We have used HashMap to hold the snapshot of the list and snapshot version as the key
 			2.1 It has O(2) complexity to retrieve elements from specific snapshot version and then value from the array
 	3. Given implementation works well when there are huge updates (value overwrite) over randomly distributed elements
+	4. Used TreeMap to store sorted snapshots based on version and it inturm improves drop operations
 	
 III. CONS
 
