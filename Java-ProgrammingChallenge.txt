@@ -1,0 +1,50 @@
+You are provided with the following interface.
+
+/**
+ * A <pre>List</pre> that offers the possibility to create snapshots of the
+ * elements currently stored in it. <pre>SnapshotList</pre> may not remove
+ * existing elements and it can only grow by appending elements, not inserting.
+ */
+interface SnapshotList<E> extends List<E> {
+
+    /**
+     * Removes all versions prior to the specified one.
+     *
+     * The version must be no greater than the current version.
+     */
+    void dropPriorSnapshots(int version);
+
+    /**
+     * Retrieves the element at the specified position for the version.
+     *
+     * @param index the specified position in the list
+     * @param version the specified snapshot
+     */
+    E getAtVersion(int index, int version);
+
+    /**
+     * Creates a snapshot of the current <pre>List</pre>.
+     *
+     * @return the version after the snapshot
+     */
+    int snapshot();
+
+    /**
+     * Indicates the version of the current <pre>SnapshotList</pre>; it may
+     * also be regarded as the number of times that {@link #snapshot()} was
+     * called on the instance.
+     *
+     * @return the version of the instance
+     */
+    int version();
+}
+
+Your task is to provide an implementation for class SynchronizedUnbalancedSnapshotList which implements the above interface. The "unbalanced" part of the name refers to the fact that this class offers an optimization for a scenario where most indexes will never get updated after being added, but a small percentage of randomly distributed indexes will receive a large number of updates. The synchronized part means that this is a thread-safe class. Also, the snapshot method, due to its critical nature for this class, should be offered execution preference.
+
+Your solution should be provided as an archive that contains the following:
+- an easily compilable project with:
+  - the implementation of the above class
+  - (optional) some testing of the functionality (no need to have actual testing frameworks or libraries)
+- a README containing instructions on how to compile and a brief discussion of the pros and cons of your implementation
+
+We expect this task to take you a few hours (thinking through your solution, coding, writing the documentation), but you are free to take a full day if you feel like you need it.
