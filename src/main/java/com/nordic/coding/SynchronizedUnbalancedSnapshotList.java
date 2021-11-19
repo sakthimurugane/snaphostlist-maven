@@ -97,7 +97,7 @@ public class SynchronizedUnbalancedSnapshotList<E> extends AbstractList<E> imple
 	}
 
 	@Override
-	public int version() {
+	public synchronized int version() {
 		return snapShotVersion;
 	}
 
@@ -240,7 +240,7 @@ public class SynchronizedUnbalancedSnapshotList<E> extends AbstractList<E> imple
     
    
 	@Override
-	public int size() {
+	public synchronized int size() {
 		return size;
 	}
 	
